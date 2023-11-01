@@ -1,0 +1,30 @@
+<div *ngIf="airData; else loading">
+  <div class="card-container" style="display: flex; flex-direction: row; justify-content: space-around; flex-wrap: wrap;">
+    <div class="card" *ngFor="let air of airData" style="border: 1px solid #ccc; margin: 10px; flex-basis: calc(33.333% - 20px); box-shadow: 0 2px 4px rgba(0,0,0,0.1); border-radius: 4px; background-color: #fff;">
+      <div class="card-header" style="border-bottom: 1px solid #eee; padding: 10px; font-weight: bold;">
+        {{ air.city || 'N/A' }}
+      </div>
+      <div class="card-body" style="padding: 10px;">
+        <p class="card-text">
+          <strong>ID:</strong> {{ air.id }}
+        </p>
+        <p class="card-text">
+          <strong>Date:</strong> {{ air.date | dateConverter | date:'short' }}
+        </p>
+        <p class="card-text">
+          <strong>City:</strong> {{ air.city || 'N/A' }}
+        </p>
+        <p class="card-text">
+          <strong>Weather:</strong> {{ air.weather || 'N/A' }}
+        </p>
+        <p class="card-text">
+          <strong>Temperature:</strong> {{ air.temperature }}
+          {{ air.celcius ? '°C' : '°F' }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #loading>
+  <p>Loading...</p>
+</ng-template>

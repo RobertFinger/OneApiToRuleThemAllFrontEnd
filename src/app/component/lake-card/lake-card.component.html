@@ -1,0 +1,28 @@
+<div class="card-container" *ngIf="lakeData">
+  <div class="card" *ngFor="let lake of lakeData">
+    <div class="card-header">
+      {{ lake.name || 'N/A' }}
+    </div>
+    <div class="card-body">
+      <p class="card-text">
+        <strong>ID:</strong> {{ lake.id }}
+      </p>
+      <p class="card-text">
+        <strong>Name:</strong> {{ lake.name || 'N/A' }}
+      </p>
+      <p class="card-text">
+        <strong>Celsius:</strong> {{ lake.celsius ? 'Yes' : 'No' }}
+      </p>
+      <p class="card-text" *ngIf="lake.temperature !== null">
+        <strong>Temperature:</strong> {{ lake.temperature }}
+      </p>
+      <p class="card-text" *ngIf="lake.weatherDate !== null">
+        <strong>Weather Date:</strong> {{ lake.weatherDate | dateConverter | date:'short' }}
+      </p>
+      <p class="card-text" *ngIf="lake.waves === undefined || lake.waves === null">
+        <strong>Waves:</strong> N/A
+      </p>
+      
+    </div>
+  </div>
+</div>

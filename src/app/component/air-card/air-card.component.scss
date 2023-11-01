@@ -1,0 +1,28 @@
+/* styles.css */
+.card-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .card {
+    border: 1px solid #ccc;
+    margin: 10px;
+    flex-basis: calc(33.333% - 20px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 4px;
+    background-color: #fff;
+    max-width: 300px;
+  }
+  
+  .card-header {
+    border-bottom: 1px solid #eee;
+    padding: 10px;
+    font-weight: bold;
+  }
+  
+  .card-body {
+    padding: 10px;
+  }
+  
