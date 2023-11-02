@@ -9,19 +9,25 @@ import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { DisplayComponent } from './component/display/display.component';
 import { DateConverterPipe } from './pipes/date-converter.pipe';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { AirFormComponent } from './component/air-form-component/air-form-component.component';
+import { LakeFormComponent } from './component/lake-form-component/lake-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LakeCardComponent,
     AirCardComponent, 
-    DisplayComponent, DateConverterPipe
+    DisplayComponent, 
+    DateConverterPipe,
+    AirFormComponent,
+    LakeFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
     StoreModule.forRoot({})
   ],
   providers: [],

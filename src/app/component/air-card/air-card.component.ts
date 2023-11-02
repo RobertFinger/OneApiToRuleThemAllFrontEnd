@@ -9,5 +9,5 @@ import { AirStatistics} from '../../models/air-statistics';
   styleUrls: ['./air-card.component.scss']
 })
 export class AirCardComponent {
-  @Input() airData: AirStatistics[] | null = null;
+  @Input() public airData: AirStatistics[] = [];
 }

@@ -5,6 +5,7 @@ import { LakeStatistics } from '../../models/lake-statistics';
 import { AirStatistics } from '../../models/air-statistics';
 import { TemperatureDataService } from '../../service/temperature-data.service';
 
+
 @Component({
   selector: 'app-display',
   templateUrl: './display.component.html',
@@ -13,10 +14,10 @@ import { TemperatureDataService } from '../../service/temperature-data.service';
 export class DisplayComponent implements OnInit {
   lakeData$: Observable<LakeStatistics[]> = EMPTY;
   airData$: Observable<AirStatistics[]> = EMPTY;
-  errorLakeData: string | null = null; // Error message for lakeData
-  errorAirData: string | null = null; // Error message for airData
-  isLoadingLakeData = true; // Loading indicator for lakeData
-  isLoadingAirData = true; // Loading indicator for airData
+  errorLakeData: string | null = null; 
+  errorAirData: string | null = null; 
+  isLoadingLakeData = true; 
+  isLoadingAirData = true; 
 
   constructor(private temperatureDataService: TemperatureDataService) {}
 
@@ -46,4 +47,25 @@ export class DisplayComponent implements OnInit {
       finalize(() => this.isLoadingAirData = false)
     );
   }
+
+  public addNewLakeData(newLakeData: LakeStatistics): void {
+    this.temperatureDataService.postLakeData(newLakeData)
+      .pipe(
+        catchError(error => {
+          console.error('Error posting new lake data:', error);
+          return EMPTY; // If an error occurs, we do not want to terminate the entire stream.
+        })
+      )
+      .subscribe(success => {
+        if (success) {
+          console.log('New lake data added successfully');
+          // Optionally trigger a refresh of lake data if required
+          this.fetchLakeData();
+        } else {
+          console.error('Failed to add new lake data');
+        }
+      });
+  }
+
+  
 }

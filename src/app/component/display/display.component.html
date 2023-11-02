@@ -1,18 +1,26 @@
 <div>
   <h1>Air and Water Data</h1>  
 </div>
-<div class="display-container">
+
   <div class="display-row">
+    <div class="header-row">
+      <h2>Water Information</h2> 
+    </div>
     <div class="display-card">
-      <!-- Using async pipe to subscribe to the Observable -->
       <app-lake-card [lakeData]="lakeData$ | async"></app-lake-card>
-    </div>   
+    </div> 
   </div>
   <div class="display-row">
-    <div class="display-card">
-      <!-- Using async pipe to subscribe to the Observable -->
-      <app-air-card [airData]="airData$ | async"></app-air-card>
+    <div class="header-row">
+      <h2>Air Information</h2>
     </div>
-  </div>   
-</div>
+    <div class="display-card">
+      <app-air-card [airData]="(airData$ | async)!"></app-air-card>
+    </div>
+  </div>
+  <div class="display-container">
+    <div class="display-row">
+      <app-lake-form (newLakeData)="addNewLakeData($event)"></app-lake-form>
+    </div>
+</div>   
 
